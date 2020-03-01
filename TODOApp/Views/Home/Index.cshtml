@@ -1,0 +1,73 @@
+﻿@model IQueryable<TODOApp.Models.db.Todo>
+
+
+<div class="card MainCard" style="width: 50rem; margin-top: 100px; margin: auto;">
+    <div class="card-body">
+        <div class="container-fluid" style="height: 100%;">
+
+            <form asp-controller="Home" asp-action="Add" class="form-inline" id="firstblock">
+                <div class="col">
+                    <input type="text" name="Text" class="form-control w-100" placeholder="What's your first todo" />
+                </div>
+
+                <button type="submit" class="btn btn-success w25" value="add new">Add</button>
+            </form>
+
+        </div>
+
+        <ul class="list-group">
+
+
+            @foreach (var item in Model)
+            {
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center" style="width: 94%; margin-left: 29px; margin-top: 10px;">
+
+                        <span id="TODOText_@item.Id">@item.Text</span>
+                        <form asp-controller="Home" asp-action="Update">
+                            <input name="Id" type="hidden" value="@item.Id" />
+                            <input type="text" name="Text" id="TODONewText_@item.Id" style="display: none;" />
+
+                            <div class="badge badge-pill" id="Save_@item.Id" style="display: none">
+                                <button type="submit" class="btn btn-success w25">Save</button>
+                            </div>
+                        </form>
+
+                        <div class="badge badge-pill" id="DelAndEd_@item.Id">
+
+                            <form asp-controller="Home" asp-action="Delete">
+                                <button type="button" class="btn btn-primary editBtn" id="@item.Id">Edit</button>
+
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger" id="deletebtn">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+
+            }
+
+        </ul>
+
+    </div>
+</div>
+
+<script>
+
+    $(".editBtn").click(function () {
+
+        var currentId = this.id;
+        var todoText = "#TODOText_" + currentId;
+        var todoNewText = "#TODONewText_" + currentId;
+        var delAndEdt = "#DelAndEd_" + currentId;
+        var save = "#Save_" + currentId;
+
+        $(todoText).hide();
+        $(delAndEdt).hide();
+
+        $(todoNewText).show();
+        $(save).show();
+    });
+
+
+
+</script>
