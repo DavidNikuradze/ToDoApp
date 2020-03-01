@@ -36,10 +36,10 @@
                         <div class="badge badge-pill" id="DelAndEd_@item.Id">
 
                             <form asp-controller="Home" asp-action="Delete">
-                                <button type="button" class="btn btn-primary editBtn" id="@item.Id">Edit</button>
+                                <button type="button" class="btn btn-primary editBtn" id="@item.Id" style="width : 80px;">Edit</button>
 
                                 <input type="hidden" name="id" value="@item.Id" />
-                                <button type="submit" class="btn btn-danger" id="deletebtn">Delete</button>
+                                <button type="submit" class="btn btn-danger" id="deletebtn" style="width :80px;">Delete</button>
                             </form>
                         </div>
                     </li>
@@ -53,20 +53,7 @@
 
 <script>
 
-    $(".editBtn").click(function () {
-
-        var currentId = this.id;
-        var todoText = "#TODOText_" + currentId;
-        var todoNewText = "#TODONewText_" + currentId;
-        var delAndEdt = "#DelAndEd_" + currentId;
-        var save = "#Save_" + currentId;
-
-        $(todoText).hide();
-        $(delAndEdt).hide();
-
-        $(todoNewText).show();
-        $(save).show();
-    });
+   
 
 
 
